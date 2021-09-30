@@ -1,10 +1,11 @@
 import React from 'react';
+import Header from './components/Header';
 
 function App() {
   return (
-<h1>
-    Weanther Xavi
-</h1> 
+  <Header 
+    title='Weanther React App'
+  />
  );
 }
 
