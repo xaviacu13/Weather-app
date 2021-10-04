@@ -1,11 +1,6 @@
 import React, { useState } from 'react';
 
-const Formulario = () => {
-
-  const [search, saveSearch] = useState({
-    city: '',
-    country: ''
-  });
+const Formulario = ({search, saveSearch, saveQuery}) => {
 
   const [error, saveError] = useState(false);
 
@@ -26,6 +21,8 @@ const Formulario = () => {
     }
 
     saveError(false);
+
+    saveQuery(true);
   }
 
   return ( 
