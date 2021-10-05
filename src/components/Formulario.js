@@ -64,7 +64,7 @@ const Formulario = ({search, saveSearch, saveQuery}) => {
         <div>
           <input 
             type="submit"
-            value="Search Weamther"
+            value="Search Weather"
             className="waves-effect waves-light btn-large btn-block yellow accent-4"
           />
         </div>
