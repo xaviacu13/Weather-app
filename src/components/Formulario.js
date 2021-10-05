@@ -48,6 +48,7 @@ const Formulario = ({search, saveSearch, saveQuery}) => {
             onChange={handleChange}
           >
             <option value="">--Select Country--</option>
+            <option value="BO">Bolivia</option>
             <option value="US">Estados Unidos</option>
             <option value="MX">México</option>
             <option value="AR">Argentina</option>

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Formulario from './components/Formulario';
+import Weather from './components/Weather';
+import Error from './components/Error';
 
 function App() {
 
@@ -9,7 +11,9 @@ function App() {
     country: ''
   });
 
-  const [query, saveQuery] = useState(false)
+  const [query, saveQuery] = useState(false);
+  const [result, saveResult] = useState({});
+  const [error, saveError] = useState(false);
 
   const { city, country } = search;
 
@@ -18,13 +22,28 @@ function App() {
       if (query){
         const appId = '278d3cfddde11429d85d73467f6e76df'
         const url =  `http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&APPID=${appId}`;
+
         const answer = await fetch(url);
-        const result = await answer.json();
-        console.log(result);
+        const results = await answer.json();
+
+        saveResult(results);
+        saveQuery(false);
+        if(result === "404"){
+          saveError(true)
+        }else{
+          saveError(false)
+        }
       }
     }
     queryAPI();
   },[query]);
+
+  let component
+  if(error){
+    component = <Error />
+  }else{
+    component =<Weather result={result} />
+  }
 
   return (
     <>
@@ -42,7 +61,9 @@ function App() {
               />
             </div>
             <div className="col m6 s12">
-              2
+              <Weather
+                result={result}
+              />
             </div>
           </div>
         </div>
