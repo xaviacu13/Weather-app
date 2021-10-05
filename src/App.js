@@ -28,7 +28,8 @@ function App() {
 
         saveResult(results);
         saveQuery(false);
-        if(result === "404"){
+
+        if(results.cod === "404"){
           saveError(true)
         }else{
           saveError(false)
@@ -36,11 +37,12 @@ function App() {
       }
     }
     queryAPI();
+     // eslint-disable-next-line
   },[query]);
 
   let component
   if(error){
-    component = <Error />
+    component = <Error message="No hay resultados"/>
   }else{
     component =<Weather result={result} />
   }
@@ -48,7 +50,7 @@ function App() {
   return (
     <>
       <Header 
-        title='Weanther React App'
+        title='Weather React App'
       />
       <div className="contenedor-form">
         <div className="container">
@@ -61,9 +63,7 @@ function App() {
               />
             </div>
             <div className="col m6 s12">
-              <Weather
-                result={result}
-              />
+              {component}
             </div>
           </div>
         </div>
